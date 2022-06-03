@@ -1,5 +1,5 @@
 # THROW DICE
- Random Dive Game
+ Random Throwing game
 
 
 THROW DICE
