@@ -1,27 +1,37 @@
-# THROW DICE
- Random Throwing game
+# Random Dice Roller
 
+![Random Dice Roller Banner](https://github.com/sonimohit481/Random-dice-roller/blob/main/image/Banner.png)
 
-THROW DICE
-Problem Statement : Throw Dice
-You and your two other team members are doing your construct week project. An issue arises in your project and all three of you come up with a solution. All the three solutions are feasible and each one of you wants to implement his own solution. Hence all of you decided to roll a dice and whoever gets the maximum score will implement his solution. But the problem is you cannot roll a dice online, so you, being an active team member, decided to make an app with three dice showing a random number between 1 to 6 as described below.
+This is a simple random dice roller web application that generates three dice rolls for each of three players. The results are displayed dynamically, and the winner is declared based on the generated results.
 
-Description :-
-Create an Index.html file
-Create three “DIV”, which will represent three dice and show a random number between 1 to 6.
-First will represent score for Member A
-Second will represent score for Member B
-And third will represent score for Member C
-Make a button with text content “ROLL THE DICE”
-On pressing the button all the three dice should roll and show a random number between 1 to 6.
-Make a “DIV” at the top which will show the winner
-Things to follow :-
-First dice will have id “member-1”.
-Second dice will have id “member-2”.
-Third dice will have id “member-3”.
-Roll the dice button will have id “roll”.
-The winner showing div will have id “winner”
-The winning dice will be in color green.
-The Second scorer dice will be in yellow
-And the dice who scored least should be in red.
-In case of draw make the dice scoring equal appear blue.
+## Deployment Link
+
+[Random Dice Roller - Live Demo](https://random-dice-roller-01.netlify.app/)
+
+## How it Works
+
+1. Click the "Roll Dice" button to initiate the game.
+2. Three dice rolls are generated for each of the three players.
+3. The results are displayed, and the winner is declared based on the highest sum of the dice rolls.
+
+Feel free to check out the live demo and enjoy a fun round of rolling dice!
+
+### About the Developer
+
+This project is developed and maintained by [sonimohit481](https://github.com/sonimohit481).
+
+### Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+
+### Contributions
+
+Contributions are welcome! If you have any suggestions or improvements, feel free to create an issue or submit a pull request.
+
+### License
+
+This project is licensed under the [MIT License](https://github.com/sonimohit481/Random-dice-roller/blob/main/LICENSE).
+
+Happy Rolling! 🎲
