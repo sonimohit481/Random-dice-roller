@@ -31,6 +31,8 @@
           :key="index"
           :member="index"
           :score="scores[index - 1]"
+          :resultType="resultTypes[index - 1]"
+          :isLoading="isLoading"
         />
       </div>
 
@@ -65,16 +67,20 @@ export default {
     const diceCount = ref(2);
     const diceCountSelected = ref(false);
     const scores = ref<number[]>([]);
+    const resultTypes = ref<string[]>([]);
     const history = ref<string[]>([]);
     const resultMessage = ref("");
     const resultColor = ref("");
+    const isLoading = ref(false);
 
     const startRolling = () => {
       diceCountSelected.value = true;
       scores.value = Array(diceCount.value).fill(0);
+      resultTypes.value = Array(diceCount.value).fill("");
     };
 
     const rollDice = () => {
+      isLoading.value = true; // Start loading state
       resultMessage.value = "Rolling...";
 
       setTimeout(() => {
@@ -89,14 +95,22 @@ export default {
         if (winners.length > 1) {
           resultMessage.value = `It's a draw between ${winners.join(" and ")}`;
           resultColor.value = "text-blue-500";
+          resultTypes.value = scores.value.map((score) =>
+            score === highestScore ? "draw" : ""
+          );
         } else {
           resultMessage.value = `Member ${winners[0]} Wins!`;
           resultColor.value = "text-green-500";
+          resultTypes.value = scores.value.map((score, i) =>
+            i + 1 === winners[0] ? "win" : ""
+          );
         }
 
         history.value.unshift(resultMessage.value);
         if (history.value.length > 10) history.value.pop();
-      }, 1000);
+
+        isLoading.value = false; // End loading state
+      }, 1000); // Simulate rolling for 1 second
     };
 
     const clearHistory = () => {
@@ -107,9 +121,11 @@ export default {
       diceCount,
       diceCountSelected,
       scores,
+      resultTypes,
       history,
       resultMessage,
       resultColor,
+      isLoading,
       startRolling,
       rollDice,
       clearHistory,
