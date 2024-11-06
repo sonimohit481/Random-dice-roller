@@ -158,6 +158,7 @@
 
       function rollDice(event) {
         event.preventDefault();
+        setMemberColors("white", "white", "white");
 
         // Display loading state
         document.querySelector("#winner").innerText = "Rolling...";
@@ -169,7 +170,6 @@
         ];
 
         rollResults.forEach((result, index) => {
-          document.querySelector(`#m${index + 1}`).innerText = result;
           document.querySelector(`#member-${index + 1} img`).src =
             "./image/Dice.gif"; // Show rolling GIF
         });
@@ -177,6 +177,7 @@
         // Simulate dice roll delay
         setTimeout(() => {
           rollResults.forEach((result, index) => {
+            document.querySelector(`#m${index + 1}`).innerText = result;
             document.querySelector(`#member-${index + 1} img`).src =
               "./image/dice2.png"; // Reset to static dice
           });
@@ -192,9 +193,35 @@
         const [score1, score2, score3] = scores;
         let winnerMessage = "";
 
-        if (score1 === score2 && score2 === score3) {
+        if (score1 > score2 && score1 > score3) {
+          winnerMessage = "Member 1 Wins";
+          setMemberColors(
+            "rgb(68, 242, 15)",
+            "rgba(240, 70, 70)",
+            "rgba(240, 70, 70)"
+          ); // Member 1 green, others red
+        } else if (score2 > score1 && score2 > score3) {
+          winnerMessage = "Member 2 Wins";
+          setMemberColors(
+            "rgba(240, 70, 70)",
+            "rgb(68, 242, 15)",
+            "rgba(240, 70, 70)"
+          ); // Member 2 green, others red
+        } else if (score3 > score1 && score3 > score2) {
+          winnerMessage = "Member 3 Wins";
+          setMemberColors(
+            "rgba(240, 70, 70)",
+            "rgba(240, 70, 70)",
+            "rgb(68, 242, 15)"
+          ); // Member 3 green, others red
+        } else if (score1 === score2 && score2 === score3) {
           winnerMessage = "It's A Draw";
-          setMemberColors(); // Set colors for all members as draw
+          setMemberColors(
+            "rgb(15, 197, 242)",
+            "rgb(15, 197, 242)",
+            "rgb(15, 197, 242)"
+          );
+          // setMemberColors(); // Set colors for all members as draw
         } else if (
           score1 === score2 ||
           score2 === score3 ||
@@ -202,35 +229,26 @@
         ) {
           if (score1 === score2) {
             winnerMessage = "It's A Draw Between Member 1 and Member 2";
-            setMemberColors("rgb(238, 250, 5)", "rgb(238, 250, 5)", "white");
+            setMemberColors(
+              "rgb(238, 250, 5)",
+              "rgb(238, 250, 5)",
+              "rgba(240, 70, 70)"
+            );
           } else if (score1 === score3) {
             winnerMessage = "It's A Draw Between Member 1 and Member 3";
-            setMemberColors("rgb(238, 250, 5)", "white", "rgb(238, 250, 5)");
+            setMemberColors(
+              "rgb(238, 250, 5)",
+              "rgba(240, 70, 70)",
+              "rgb(238, 250, 5)"
+            );
           } else {
             winnerMessage = "It's A Draw Between Member 2 and Member 3";
-            setMemberColors("white", "rgb(238, 250, 5)", "rgb(238, 250, 5)");
+            setMemberColors(
+              "rgba(240, 70, 70)",
+              "rgb(238, 250, 5)",
+              "rgb(238, 250, 5)"
+            );
           }
-        } else if (score1 > score2 && score1 > score3) {
-          winnerMessage = "Member 1 Wins";
-          setMemberColors(
-            "rgb(68, 242, 15)",
-            "rgb(240, 70, 70)",
-            "rgb(240, 70, 70)"
-          ); // Member 1 green, others red
-        } else if (score2 > score1 && score2 > score3) {
-          winnerMessage = "Member 2 Wins";
-          setMemberColors(
-            "rgb(240, 70, 70)",
-            "rgb(68, 242, 15)",
-            "rgb(240, 70, 70)"
-          ); // Member 2 green, others red
-        } else {
-          winnerMessage = "Member 3 Wins";
-          setMemberColors(
-            "rgb(240, 70, 70)",
-            "rgb(240, 70, 70)",
-            "rgb(68, 242, 15)"
-          ); // Member 3 green, others red
         }
 
         return winnerMessage;
