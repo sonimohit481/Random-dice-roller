@@ -6,10 +6,11 @@
       </h1>
     </header>
 
-    <div v-if="!diceCountSelected" class="my-6">
+    <div v-if="!diceCountSelected" class="my-6 text-center">
       <label class="text-lg font-semibold text-gray-700"
         >Choose Number of Dice:</label
       >
+
       <select
         v-model="diceCount"
         class="ml-4 p-2 rounded border border-gray-300"
@@ -24,34 +25,48 @@
       </button>
     </div>
 
-    <div v-else class="w-full max-w-3xl">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <DiceComponent
-          v-for="index in diceCount"
-          :key="index"
-          :member="index"
-          :score="scores[index - 1]"
-          :resultType="resultTypes[index - 1]"
-          :isLoading="isLoading"
-        />
-      </div>
+    <div v-else class="w-full max-w-6xl">
+      <!-- Two main sections: Dice and History -->
+      <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <!-- Dice Cards and Result Section -->
+        <div class="flex-1">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 mb-6 justify-items-center"
+          >
+            <DiceComponent
+              v-for="index in diceCount"
+              :key="index"
+              :member="index"
+              :score="scores[index - 1]"
+              :resultType="resultTypes[index - 1]"
+              :isLoading="isLoading"
+            />
+          </div>
 
-      <div class="my-4">
-        <button
-          @click="rollDice"
-          class="w-full md:w-1/2 bg-green-600 text-white py-2 rounded-lg font-bold text-2xl"
-        >
-          Roll The Dice
-        </button>
-      </div>
+          <div class="my-4 text-center">
+            <p class="text-2xl font-bold" :class="resultColor">
+              {{ resultMessage }}
+            </p>
+          </div>
 
-      <div class="my-4">
-        <p class="text-2xl font-bold text-center" :class="resultColor">
-          {{ resultMessage }}
-        </p>
-      </div>
+          <!-- Roll The Dice Button in the first section -->
+          <div class="my-4 flex justify-center">
+            <button
+              @click="rollDice"
+              class="w-full md:w-auto bg-green-600 text-white py-2 px-8 rounded-lg font-bold text-2xl"
+            >
+              Roll The Dice
+            </button>
+          </div>
+        </div>
 
-      <RollHistory :history="history" @clear="clearHistory" />
+        <!-- Roll History Section -->
+        <div class="flex-1">
+          <div class="flex flex-col items-center gap-6">
+            <RollHistory :history="history" @clear="clearHistory" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -80,7 +95,7 @@ export default {
     };
 
     const rollDice = () => {
-      isLoading.value = true; // Start loading state
+      isLoading.value = true;
       resultMessage.value = "Rolling...";
 
       setTimeout(() => {
@@ -109,8 +124,8 @@ export default {
         history.value.unshift(resultMessage.value);
         if (history.value.length > 10) history.value.pop();
 
-        isLoading.value = false; // End loading state
-      }, 1000); // Simulate rolling for 1 second
+        isLoading.value = false;
+      }, 1000);
     };
 
     const clearHistory = () => {
