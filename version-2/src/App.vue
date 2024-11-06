@@ -76,9 +76,11 @@ export default {
 
     const rollDice = () => {
       resultMessage.value = "Rolling...";
-      scores.value = scores.value.map(() => Math.floor(Math.random() * 6) + 1);
 
       setTimeout(() => {
+        scores.value = scores.value.map(
+          () => Math.floor(Math.random() * 6) + 1
+        );
         const highestScore = Math.max(...scores.value);
         const winners = scores.value
           .map((score, i) => (score === highestScore ? i + 1 : null))
