@@ -7,21 +7,21 @@ type DiceComponentProps = {
   resultType: string;
   isLoading: boolean;
 };
+
 export const DiceComponent = ({
   member,
   score,
   resultType,
   isLoading,
 }: DiceComponentProps) => {
-  const resultClass =
-    resultType === "win"
-      ? styles.win
-      : resultType === "draw"
-      ? styles.draw
-      : "";
-
   return (
-    <View style={[styles.container, resultClass]}>
+    <View
+      style={[
+        styles.container,
+        resultType === "win" && styles.win,
+        resultType === "draw" && styles.draw,
+      ]}
+    >
       {!isLoading ? (
         <>
           <Image source={require("../assets/dice2.png")} style={styles.image} />
