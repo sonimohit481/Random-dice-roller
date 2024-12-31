@@ -1,12 +1,12 @@
 # Dice Roll Game
 
-![Random Dice Roller Banner](https://raw.githubusercontent.com/sonimohit481/Random-dice-roller/main/version-1/image/Banner.png)
+![Random Dice Roller Banner](https://raw.githubusercontent.com/sonimohit481/Random-dice-roller/main/version-2/public/banner.png)
 
 The **Dice Roll Game** is an interactive web application that allows users to roll any number of dice, view the individual results, and track the history of the rolls. It offers a simple and dynamic way to engage with a dice-rolling game, supporting multiple dice and displaying historical records.
 
 ## Deployment Link
 
-[Dice Roll Game - Live Demo](https://random-dice-roller-01.netlify.app/)
+[Dice Roll Game - Live Demo](https://reandom-dice-roller02.netlify.app/)
 
 ## Features
 
