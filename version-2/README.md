@@ -6,7 +6,7 @@ The **Dice Roll Game** is an interactive web application that allows users to ro
 
 ## Deployment Link
 
-[Dice Roll Game - Live Demo](https://reandom-dice-roller02.netlify.app/)
+[Dice Roll Game - Live Demo](https://random-dice-roller02.netlify.app/)
 
 ## Features
 
